@@ -17,6 +17,7 @@
 
 	<properties>
 		<dist.key>DATACMNS</dist.key>
+		<scala>2.11.7</scala>
 	</properties>
 
 	<dependencies>
@@ -190,6 +191,14 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Scala -->
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>${scala}</version>
+			<optional>true</optional>
+		</dependency>
+
 		<dependency>
 			<groupId>javax.transaction</groupId>
 			<artifactId>javax.transaction-api</artifactId>
@@ -253,6 +262,21 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jfrog.buildinfo</groupId>
+						<artifactId>artifactory-maven-plugin</artifactId>
+						<inherited>false</inherited>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<repositories>
 		<repository>
